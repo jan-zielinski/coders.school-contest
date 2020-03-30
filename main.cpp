@@ -6,6 +6,7 @@
 #include <random>
 #include <utility>
 #include <iterator>
+#include <cassert>
 
 std::vector<std::pair<char, int>> generateKey();
 std::string encode(std::string message, std::vector<std::pair<char, int>> key);
@@ -19,36 +20,8 @@ int main() {
     auto key = generateKey();
     auto cypher = encode(message, key);
     auto result = decode(cypher,key);
-    //Pokazuje klucz
-    for(auto x : key)
-    {
-        std::cout << x.first << " : " << x.second << std::endl;
-    }
 
-    //Pokazuje normalną wiadomosć
-    for(auto x : s)
-    {
-        std::cout << x;
-    }
-    std::cout << std::endl;
-
-
-    //Pokazuje zakodowaną wiadomość
-    for(auto x : cypher)
-    {
-        std::cout << x;
-    }
-    std::cout << std::endl;
-
-
-    //Pokazuje odkodowaną wiadomość
-    for(auto x : result)
-    {
-        std::cout << x;
-    }
-    std::cout << std::endl;
-
-
+    assert(message == result && "Something doesn't work");
 
    
     return 0;
