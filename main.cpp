@@ -27,6 +27,7 @@ int main() {
     return 0;
 }
 
+
 /*
     generateKey - fucntion generate a key, which is a vector of pairs with every letter, space, slash etc. (ASCII in range [32,126])
     with shuffled ints witin the same range
@@ -36,12 +37,12 @@ std::vector<std::pair<char, int>> generateKey()
     std::random_device rd;
     std::mt19937 g(rd());
 
-    std::vector<int> keyInt(95); 
+    std::vector<int> keyInt(95);
+    std::vector< std::pair<char, int> > key; 
 
     std::generate(keyInt.begin(), keyInt.end(), [n=32] () mutable {return n++;});   
     std::shuffle(keyInt.begin(), keyInt.end(), g);                      
 
-    std::vector< std::pair<char, int> > key;
    
     for(int i = 0; i < 95; i++)
     {
@@ -50,6 +51,7 @@ std::vector<std::pair<char, int>> generateKey()
 
     return key;
 }
+
 
 /*
     encrypt - for every letter in 'message', this function is searching for it's equivalent in generated key and change it's value 
@@ -69,6 +71,7 @@ std::string encrypt(std::string message, std::vector<std::pair<char, int>> key)
 
     return message;
 }
+
 
 /*
     encrypt - for every letter in encypted 'message' function is searching for it's equivalent in key and change it for it's original value
